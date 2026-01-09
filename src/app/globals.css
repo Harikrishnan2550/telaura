@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+.animate-float {
+  animation: float linear infinite;
+  will-change: transform, opacity;
+}
+
+
+@keyframes float {
+  0%   { transform: translateY(0) translateX(0); }
+  50%  { transform: translateY(-100vh) translateX(30px); }
+  100% { transform: translateY(-120vh) translateX(-25px); }
+}
+
+.animate-float {
+  animation: float linear infinite;
+  will-change: transform;
+}
+
+
+
+/* ============================================= */
+/*        Floating Particles - Refined           */
+/* ============================================= */
+
+@layer utilities {
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(100, 116, 139, 0.6); /* slate-500 ish */
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  .animate-float {
+    animation: 
+      float 18s cubic-bezier(0.25, 0.1, 0.25, 1) infinite,
+      fadeInOut 18s ease-in-out infinite;
+  }
+
+  /* Gentle floating movement with slight horizontal drift */
+  @keyframes float {
+    0%   {
+      transform: translateY(0) translateX(0);
+      opacity: 0;
+    }
+    10%  { opacity: 0.7; }
+    50%  {
+      transform: translateY(-45vh) translateX(18px);
+      opacity: 0.9;
+    }
+    90%  { opacity: 0.6; }
+    100% {
+      transform: translateY(-90vh) translateX(-12px);
+      opacity: 0;
+    }
+  }
+
+  /* Subtle breathing opacity */
+  @keyframes fadeInOut {
+    0%, 100%   { opacity: 0; }
+    15%, 85%   { opacity: 0.7; }
+  }
+}
+
+
+/* Animation keyframes */
+@keyframes fadeInUpCategory {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slow-breathe {
+  0%, 100% { transform: scale(1.02); opacity: 0.65; }
+  50%      { transform: scale(1.07); opacity: 0.8; }
+}
+
+@keyframes shimmer-slow {
+  0%   { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+
+/* Float animation for particles */
+@keyframes float {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 0.7; }
+  50%  { transform: translateY(-45vh) translateX(18px); opacity: 0.9; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(-90vh) translateX(-12px); opacity: 0; }
+}
+
+/* Base classes */
+.animate-float {
+  animation: float 24s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-slow-breathe {
+  animation: slow-breathe 28s ease-in-out infinite;
+}
+
+.animate-shimmer-slow {
+  animation: shimmer-slow 9s infinite linear;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUpCategory 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+
+
