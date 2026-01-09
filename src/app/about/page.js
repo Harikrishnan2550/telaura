@@ -120,7 +120,7 @@ export default function AboutPage() {
                   <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden shadow-2xl bg-neutral-200">
                     <motion.div style={{ y: yImage }} className="absolute inset-0 h-[120%] w-full">
                       <Image
-                        src="/images/about/Google Pixel 7a.jpg"
+                        src="/images/about/google-pixel.png"
                         alt="Telaura Store - Premium Mobile & Gadgets"
                         fill
                         className="object-cover"
