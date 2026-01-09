@@ -67,7 +67,7 @@ export default function Navbar() {
             >
               <div className="relative w-[90px] h-[28px] xs:w-[100px] xs:h-[32px] sm:w-[110px] sm:h-[34px] md:w-[130px] md:h-[42px] lg:w-[150px] lg:h-[48px] xl:w-[170px] xl:h-[54px] 2xl:w-[180px] 2xl:h-[56px]">
                 <Image
-                  src="/logo/LOGO.PNG"
+                  src="/logo/logo.png"
                   alt="Telaura Logo"
                   fill
                   priority
