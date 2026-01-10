@@ -23,7 +23,7 @@ const products = [
   {
     title: "Smart Watches",
     category: "Wearable Tech",
-    image: "/images/products/smartwatch-v2.png",
+    image: "/images/products/smartwatch.jpg",
   },
   {
     title: "Android Phones",

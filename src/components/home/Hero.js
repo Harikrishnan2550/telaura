@@ -15,16 +15,18 @@ const productImages = [
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Mouse Spotlight
+  // Mouse Spotlight effect
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const spotlightX = useSpring(mouseX, { stiffness: 50, damping: 20 });
   const spotlightY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
+  // Auto cycle through images (adjusted timing for slow animation)
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % productImages.length);
-    }, 5000);
+    }, 6200); // ≈ 1.5s in + ~3s stay + 1.7s out
+
     return () => clearInterval(timer);
   }, []);
 
@@ -35,12 +37,12 @@ export default function Hero() {
   }, [mouseX, mouseY]);
 
   return (
-    <section 
+    <section
       onMouseMove={handleMouseMove}
       className="relative min-h-screen w-full overflow-hidden bg-[#020202] text-white"
     >
       {/* Dynamic Spotlight */}
-      <motion.div 
+      <motion.div
         style={{
           background: useTransform(
             [spotlightX, spotlightY],
@@ -51,7 +53,7 @@ export default function Hero() {
       />
 
       {/* Scanning Line */}
-      <motion.div 
+      <motion.div
         animate={{ y: ["-100%", "200%"] }}
         transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         className="absolute inset-0 z-10 w-full h-[2px] bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none"
@@ -59,56 +61,53 @@ export default function Hero() {
 
       <Navbar />
 
-      {/* Responsive Layout with Controlled Gap */}
+      {/* Main content */}
       <div className="relative z-20 flex flex-col lg:grid lg:grid-cols-2 items-center min-h-screen max-w-7xl mx-auto px-6 lg:px-12 gap-8 lg:gap-20 pt-20 lg:pt-0">
         
-        {/* Product Image Section - First on Mobile */}
+        {/* Product Image Section */}
         <div className="w-full flex justify-center order-1 lg:order-2 relative">
           <div className="relative h-[400px] sm:h-[500px] lg:h-[700px] w-full flex items-center justify-center">
-            <AnimatePresence mode="popLayout">
+            <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                initial={{ 
-                  y: -4500,
+                initial={{
+                  y: "-140vh",          // start far above
                   opacity: 0,
-                  rotate: -18,
-                  scale: 0.85
+                  scale: 0.92,
+                  rotate: -3,
                 }}
-                animate={{ 
+                animate={{
                   y: 0,
                   opacity: 1,
-                  rotate: 0,
                   scale: 1,
+                  rotate: 0,
                 }}
-                exit={{ 
-                  y: 4500,
+                exit={{
+                  y: "140vh",           // continue falling down
                   opacity: 0,
-                  rotate: 15,
-                  scale: 0.3,
+                  scale: 0.88,
+                  rotate: 3,
                 }}
                 transition={{
-                  initial: false,
+                  // Slow fall in
                   animate: {
-                    y: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-                    rotate: { duration: 0.5 },
-                    scale: { duration: 0.5 },
-                    opacity: { duration: 0.3 }
+                    duration: 1.5,
+                    ease: [0.22, 1, 0.36, 1], // beautiful overshoot & settle
                   },
+                  // Slow continuation downward
                   exit: {
-                    y: { duration: 0.45, ease: [0.4, 0, 0.2, 1] },
-                    rotate: { duration: 0.45 },
-                    scale: { duration: 0.45 },
-                    opacity: { duration: 0.3 }
-                  }
+                    duration: 1.7,
+                    ease: [0.42, 0, 0.58, 1], // gentle acceleration out
+                  },
                 }}
                 className="relative w-full aspect-square max-w-sm sm:max-w-md lg:max-w-lg"
               >
                 {/* Quick Impact Flash */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.6 }}
-                  animate={{ 
+                  animate={{
                     opacity: [0, 0.8, 0],
-                    scale: [0.6, 1.5, 1]
+                    scale: [0.6, 1.5, 1],
                   }}
                   transition={{ duration: 0.6, times: [0, 0.2, 1] }}
                   className="absolute inset-0 rounded-full blur-[100px] pointer-events-none"
@@ -116,10 +115,10 @@ export default function Hero() {
                 />
 
                 {/* Pulsing Glow */}
-                <motion.div 
-                  animate={{ 
+                <motion.div
+                  animate={{
                     scale: [1, 1.15, 1],
-                    opacity: [0.12, 0.22, 0.12]
+                    opacity: [0.12, 0.22, 0.12],
                   }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="absolute inset-0 rounded-full blur-[120px]"
@@ -128,14 +127,14 @@ export default function Hero() {
 
                 {/* Product Image */}
                 <motion.div
-                  animate={{ 
+                  animate={{
                     y: [0, -25, 0],
-                    rotate: [0, 2, -2, 0]
+                    rotate: [0, 2, -2, 0],
                   }}
-                  transition={{ 
-                    duration: 5, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
                   }}
                   className="relative w-full h-full"
                 >
@@ -149,20 +148,14 @@ export default function Hero() {
                 </motion.div>
               </motion.div>
             </AnimatePresence>
-
-         
           </div>
         </div>
 
-        {/* Text Section - Second on Mobile */}
+        {/* Text Section */}
         <div className="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 pb-8 lg:pb-0">
-          
-
           <h1 className="relative text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extralight tracking-tighter leading-none mb-4 mt-0 lg:mt-36">
             <AnimatePresence mode="wait">
-              <motion.div
-               
-              >
+              <motion.div>
                 Technology, <br />
                 <span className="font-medium bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
                   Chosen Well.
@@ -171,13 +164,13 @@ export default function Hero() {
             </AnimatePresence>
           </h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.4 }}
             transition={{ delay: 1, duration: 2 }}
             className="mt-6 text-lg sm:text-xl text-neutral-400 font-playfair italic max-w-lg mx-auto lg:mx-0 tracking-wide"
           >
-           For those who expect more from what they carry.
+            For those who expect more from what they carry.
           </motion.p>
 
           <div className="mt-12 flex justify-center lg:justify-start">
@@ -190,7 +183,7 @@ export default function Hero() {
               <span className="relative z-10 text-[10px] font-bold uppercase tracking-[0.3em]">
                 Acquire Now
               </span>
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 bg-white translate-y-[100%] group-hover:translate-y-[0%]"
                 transition={{ duration: 0.5 }}
               />

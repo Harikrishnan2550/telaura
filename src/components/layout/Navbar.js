@@ -65,7 +65,7 @@ export default function Navbar() {
               className="relative z-50 flex-shrink-0 transition-transform duration-300 hover:scale-105 active:scale-95"
               aria-label="Telaura Home"
             >
-              <div className="relative w-[180px] h-[50px] xs:w-[100px] xs:h-[32px] sm:w-[110px] sm:h-[34px] md:w-[130px] md:h-[42px] lg:w-[150px] lg:h-[48px] xl:w-[170px] xl:h-[54px] 2xl:w-[180px] 2xl:h-[56px]">
+              <div className="relative w-[180px] h-[50px] xs:w-[100px] xs:h-[32px] sm:w-[110px] sm:h-[34px] md:w-[130px] md:h-[42px] lg:w-[150px] lg:h-[48px] xl:w-[170px] xl:h-[54px] 2xl:w-[280px] 2xl:h-[76px] ml-[-30px] sm:ml-[-100px]">
                 <Image
                   src="/logo/logo.png"
                   alt="Telaura Logo"

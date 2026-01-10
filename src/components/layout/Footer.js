@@ -135,7 +135,7 @@ export default function Footer() {
           </div>
           
           <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 font-medium">
-            © {currentYear} {SITE.name} • <span className="italic font-serif normal-case tracking-normal text-neutral-300">Curated with Excellence</span>
+            © {currentYear} {SITE.name} • <span className="italic font-serif normal-case tracking-normal text-neutral-300">Developed by <a href="https://winshineinfotech.com/">Winshine Infotech</a></span>
           </p>
 
           <div className="flex items-center gap-2 opacity-30 grayscale hover:opacity-100 transition-opacity duration-500">
