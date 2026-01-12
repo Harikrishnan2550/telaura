@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
+import BrevoHiddenForm from "@/components/BrevoHiddenForm";
+
 import {
   Send,
   Mail,
   MessageCircle,
   Phone,
   Loader2,
-  ArrowRight,
 } from "lucide-react";
 
 /* ---------------- Animations ---------------- */
@@ -46,29 +47,23 @@ export default function ContactClient() {
     error: null,
   });
 
+  const brevoRef = useRef(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  /* ---------------- REAL API SUBMIT ---------------- */
+  /* ---------------- Submit (Brevo Hidden Form) ---------------- */
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus({ loading: true, success: false, error: null });
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const ok = brevoRef.current?.submit(formData);
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data?.error || "Failed to send message");
-      }
+      if (!ok) throw new Error("Form not ready. Please try again.");
 
       setFormData({ name: "", email: "", phone: "", message: "" });
       setStatus({ loading: false, success: true, error: null });
@@ -89,6 +84,9 @@ export default function ContactClient() {
 
   return (
     <main className="min-h-screen bg-white text-black overflow-x-hidden">
+      {/* ✅ Hidden Brevo Form (REQUIRED) */}
+      <BrevoHiddenForm ref={brevoRef} />
+
       {/* Intro */}
       <motion.section
         variants={containerVariants}
@@ -249,6 +247,7 @@ export default function ContactClient() {
           <a
             href="https://wa.me/971564470500"
             target="_blank"
+            rel="noreferrer"
             className="p-8 border rounded-2xl text-center"
           >
             <MessageCircle className="mx-auto mb-4" />
@@ -256,7 +255,7 @@ export default function ContactClient() {
           </a>
 
           <a
-            href="https://wa.me/971564470500"
+            href="tel:+971564470500"
             className="p-8 border rounded-2xl text-center"
           >
             <Phone className="mx-auto mb-4" />

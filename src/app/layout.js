@@ -4,6 +4,8 @@ import Footer from "@/components/layout/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
+import Script from "next/script";
+
 // Google Fonts
 import { Inter, Playfair_Display } from "next/font/google";
 
@@ -63,7 +65,7 @@ export const metadata = {
     siteName: "Telaura",
     images: [
       {
-        url: "/images/og-image.jpg", // add this image (1200x630)
+        url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Telaura Mobiles & Gadgets – Dubai & Kerala",
@@ -103,6 +105,8 @@ export default function RootLayout({ children }) {
 
         {/* Footer */}
         <Footer />
+
+      
       </body>
     </html>
   );

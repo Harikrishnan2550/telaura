@@ -86,7 +86,7 @@ export default function Footer() {
                   <span className="w-1.5 h-1.5 bg-black mt-1.5 rounded-full flex-shrink-0" />
                   <div>
                     <p className="text-[11px] uppercase tracking-widest text-neutral-400 font-bold mb-2">
-                      Sharjah Showroom
+                      Sharjah 
                     </p>
                     <address className="not-italic text-sm text-neutral-700 font-light leading-relaxed">
                       Old Muwaileh, Fire Station Road<br />
