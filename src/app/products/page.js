@@ -57,6 +57,16 @@ const productCategories = [
     description: "Premium essentials designed to elevate your daily device experience.",
     images: ["/images/ourproducts/accessories1.png", "/images/ourproducts/accessories2.png", "/images/ourproducts/accessories3.png"],
   },
+ {
+    title: "Printers & Cartridges",
+    tagline: "Perfect Prints Every Time",
+    description: "Reliable printers and high-yield cartridges for home and office — vibrant, long-lasting results.",
+    images: [
+      "/images/ourproducts/printer1.png",      // main printer (preferably wide/hero shot)
+      "/images/ourproducts/printer2.png", // colorful cartridges arrangement
+      "/images/ourproducts/printer3.png"        // actual printing in action or result
+    ],
+  },
 ];
 
 const MagneticButton = ({ children }) => {
@@ -158,10 +168,8 @@ export default function ProductsClient() {
   if (prefersReducedMotion) {
     return (
       <div className="min-h-screen bg-[#fafafa] text-slate-900">
-        {/* Very basic fallback version without heavy animations */}
         <div className="max-w-7xl mx-auto px-6 py-20">
           <h1 className="text-5xl md:text-8xl font-medium mb-8">Our Products</h1>
-          {/* Rest of content without motion... */}
         </div>
       </div>
     );

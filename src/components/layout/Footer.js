@@ -120,7 +120,7 @@ export default function Footer() {
           <div>
             <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold text-black mb-8">Social</h4>
             <ul className="space-y-4 text-sm text-neutral-500 font-light">
-              <li><a href="#" className="hover:text-black transition-colors">Instagram</a></li>
+              <li><a href="https://www.instagram.com/telaura_mobiles?igsh=MWF5cml1bDg2NXdmdg==" className="hover:text-black transition-colors">Instagram</a></li>
               <li><a href="#" className="hover:text-black transition-colors">Facebook</a></li>
               <li><a href="#" className="hover:text-black transition-colors">LinkedIn</a></li>
             </ul>
@@ -135,7 +135,7 @@ export default function Footer() {
           </div>
           
           <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 font-medium">
-            © {currentYear} {SITE.name} • <span className="italic font-serif normal-case tracking-normal text-neutral-300">Developed by <a href="https://winshineinfotech.com/">Winshine Infotech</a></span>
+            © {currentYear} {SITE.name} • <span className="font-serif normal-case tracking-normal text-neutral-400">Developed by <a href="https://winshineinfotech.com/">Winshine Infotech</a></span>
           </p>
 
           <div className="flex items-center gap-2 opacity-30 grayscale hover:opacity-100 transition-opacity duration-500">
