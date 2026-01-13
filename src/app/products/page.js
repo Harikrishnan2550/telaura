@@ -119,6 +119,15 @@ const FloatingParticle = ({ delay = 0 }) => {
   const prefersReducedMotion = useReducedMotion();
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
+  // ✅ generate random values only once (stable)
+  const rand = useMemo(() => {
+    return {
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      duration: 18 + Math.random() * 14,
+    };
+  }, []);
+
   if (prefersReducedMotion) return null;
 
   return (
@@ -131,18 +140,19 @@ const FloatingParticle = ({ delay = 0 }) => {
         opacity: [0, 0.5, 0.5, 0],
       }}
       transition={{
-        duration: 18 + Math.random() * 14,
+        duration: rand.duration,
         repeat: Infinity,
         ease: "linear",
         delay,
       }}
       style={{
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
+        left: rand.left,
+        top: rand.top,
       }}
     />
   );
 };
+
 
 export default function ProductsClient() {
   const prefersReducedMotion = useReducedMotion();
