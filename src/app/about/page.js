@@ -58,7 +58,7 @@ export default function AboutPage() {
         {({ yImage }) => (
           <>
             {/* HERO SECTION */}
-            <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 px-6">
+            <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 px-6 pl-8 lg:pl-32">
               <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                 {/* CONTENT - Staggered reveal */}
                 <motion.div
@@ -117,10 +117,10 @@ export default function AboutPage() {
                   viewport={{ once: true }}
                   className="relative"
                 >
-                  <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden shadow-2xl bg-neutral-200">
+                  <div className="relative aspect-[4/4] w-full rounded-3xl overflow-hidden shadow-2xl bg-neutral-200 mt-0 lg:mt-20">
                     <motion.div style={{ y: yImage }} className="absolute inset-0 h-[120%] w-full">
                       <Image
-                        src="/images/about/google-pixel.png"
+                        src="/images/about/google-pixel2.png"
                         alt="Telaura Store - Premium Mobile & Gadgets"
                         fill
                         className="object-cover"

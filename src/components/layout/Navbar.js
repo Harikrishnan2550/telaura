@@ -46,7 +46,7 @@ export default function Navbar() {
             href="/" 
             className="relative z-50 ml-0 lg:ml-[-36] transition-transform duration-300 hover:scale-105 active:scale-95"
           >
-            <div className="relative w-32 h-8 md:w-64 md:h-20">
+            <div className="relative w-32 h-12 md:w-64 md:h-20 ml-[-12] lg:ml-0">
               <Image
                 src="/logo/logo.png"
                 alt="Telaura Logo"
