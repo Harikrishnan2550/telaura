@@ -196,7 +196,7 @@ export default function ProductsClient() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100 animate-slow-breathe opacity-70" />
 
-        <div className="max-w-7xl mx-auto relative z-10 text-center">
+        <div className="max-w-7xl mx-auto relative z-10 text-center mt-12">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
