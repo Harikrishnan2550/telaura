@@ -58,7 +58,7 @@ const cardVariants = {
 
 export default function Services() {
   return (
-    <section className="bg-white py-20 lg:py-48 overflow-hidden">
+    <section className="bg-white py-4 lg:py-0 overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-16">
         
         {/* Editorial Header */}
@@ -191,7 +191,7 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="mt-24 lg:mt-32 pt-16 border-t border-neutral-100"
+          className="mt-24 lg:mt-14 pt-16 border-t border-neutral-100"
         >
           <p className="text-[10px] tracking-[0.5em] text-neutral-300 uppercase font-bold text-center">
             Dubai × Kerala × Premium Standards
