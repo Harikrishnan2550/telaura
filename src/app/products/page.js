@@ -57,14 +57,34 @@ const productCategories = [
     description: "Premium essentials designed to elevate your daily device experience.",
     images: ["/images/ourproducts/accessories1.png", "/images/ourproducts/accessories2.png", "/images/ourproducts/accessories3.png"],
   },
- {
+  {
     title: "Printers & Cartridges",
     tagline: "Perfect Prints Every Time",
     description: "Reliable printers and high-yield cartridges for home and office — vibrant, long-lasting results.",
     images: [
-      "/images/ourproducts/printer1.png",      // main printer (preferably wide/hero shot)
-      "/images/ourproducts/printer2.png", // colorful cartridges arrangement
-      "/images/ourproducts/printer3.png"        // actual printing in action or result
+      "/images/ourproducts/printer1.png",
+      "/images/ourproducts/printer2.png",
+      "/images/ourproducts/printer3.png"
+    ],
+  },
+  {
+    title: "Other Products",
+    tagline: "Comprehensive Tech Solutions",
+    description: "An extensive range of tech essentials including desktops, hard drives, hardware, monitors, NAS storage, projectors, scanners, servers, software, memory, gaming components, networking, and multimedia products.",
+    images: [
+      { src: "/images/ourproducts/desktop.png", name: "Desktop" },
+      { src: "/images/ourproducts/hard-drive.png", name: "Hard Drive" },
+      { src: "/images/ourproducts/hardware.png", name: "Hardware" },
+      { src: "/images/ourproducts/monitor.png", name: "Monitor" },
+      { src: "/images/ourproducts/nas-storage.png", name: "NAS Storage" },
+      { src: "/images/ourproducts/projector.png", name: "Projector" },
+      { src: "/images/ourproducts/scanner.png", name: "Scanner" },
+      { src: "/images/ourproducts/server.png", name: "Server" },
+      { src: "/images/ourproducts/software.png", name: "Software" },
+      { src: "/images/ourproducts/memory-products.png", name: "Memory Products" },
+      { src: "/images/ourproducts/gaming-components.png", name: "Gaming Components" },
+      { src: "/images/ourproducts/network-products.png", name: "Network Products" },
+      { src: "/images/ourproducts/multimedia-products.png", name: "Multimedia Products" }
     ],
   },
 ];
@@ -119,7 +139,6 @@ const FloatingParticle = ({ delay = 0 }) => {
   const prefersReducedMotion = useReducedMotion();
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
-  // ✅ generate random values only once (stable)
   const rand = useMemo(() => {
     return {
       left: `${Math.random() * 100}%`,
@@ -152,7 +171,6 @@ const FloatingParticle = ({ delay = 0 }) => {
     />
   );
 };
-
 
 export default function ProductsClient() {
   const prefersReducedMotion = useReducedMotion();
@@ -192,14 +210,12 @@ export default function ProductsClient() {
       transition={{ duration: responsive.entranceDuration }}
       className="min-h-screen bg-[#fafafa] text-slate-900 selection:bg-black selection:text-white overflow-x-hidden relative"
     >
-      {/* Floating particles */}
       <div className="fixed inset-0 pointer-events-none z-0">
         {Array.from({ length: responsive.particleCount }).map((_, i) => (
           <FloatingParticle key={i} delay={i * 2.8} />
         ))}
       </div>
 
-      {/* Hero Section */}
       <motion.section
         style={{ y: yHero, opacity: opacityHero }}
         className="relative pt-20 pb-28 md:pt-32 md:pb-44 px-5 sm:px-6 lg:px-8 overflow-hidden"
@@ -237,7 +253,6 @@ export default function ProductsClient() {
         </div>
       </motion.section>
 
-      {/* Categories Section */}
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pb-20 md:pb-40 relative z-10">
         <div className="space-y-20 md:space-y-32 lg:space-y-48 xl:space-y-60">
           {productCategories.map((category, index) => (
@@ -268,42 +283,56 @@ export default function ProductsClient() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
-                {category.images.map((img, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.12 + index * 0.15, duration: 0.8 }}
-                    whileHover={{
-                      scale: responsive.hoverScale,
-                      y: responsive.isMobile ? -8 : -16,
-                      rotateZ: responsive.hoverRotate * (i % 2 === 0 ? 1 : -1),
-                    }}
-                    className="relative aspect-[4/5] overflow-hidden rounded-xl bg-white shadow-md group border border-slate-100"
-                  >
-                    <Image
-                      src={img}
-                      alt={`${category.title} product ${i + 1}`}
-                      fill
-                      className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.05] md:group-hover:scale-110"
-                      quality={85}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
+                {category.images.map((item, i) => {
+                  const imgSrc = typeof item === "string" ? item : item.src;
+                  const itemName = typeof item === "string" ? null : item.name;
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
+                  return (
                     <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileHover={{ opacity: 1, y: 0 }}
-                      className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6"
+                      key={i}
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.12 + index * 0.15, duration: 0.8 }}
+                      whileHover={{
+                        scale: responsive.hoverScale,
+                        y: responsive.isMobile ? -8 : -16,
+                        rotateZ: responsive.hoverRotate * (i % 2 === 0 ? 1 : -1),
+                      }}
+                      className="relative aspect-[4/5] overflow-hidden rounded-xl bg-white shadow-md group border border-slate-100"
                     >
-                      <span className="text-[10px] sm:text-xs font-semibold tracking-wider text-white bg-black/70 backdrop-blur-md px-3 py-1.5 sm:px-5 sm:py-2 rounded-full">
-                        View →
-                      </span>
+                      <Image
+                        src={imgSrc}
+                        alt={itemName || `${category.title} product ${i + 1}`}
+                        fill
+                        className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.05] md:group-hover:scale-110"
+                        quality={85}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-700" />
+
+                      <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 flex flex-col items-start z-10">
+                        {itemName && (
+                          <div className="flex flex-col mb-4 transform transition-all duration-700 ease-out group-hover:-translate-y-2">
+                            
+                            {/* Added underline animation classes:
+                              - relative, inline-block (for positioning the pseudo-element)
+                              - after:content-[''] (creates the line)
+                              - after:absolute after:w-full after:scale-x-0 (hidden by default)
+                              - after:h-[1px] after:bottom-0 after:left-0 after:bg-white/80 (styling)
+                              - after:origin-bottom-left after:transition-transform after:duration-500 after:ease-out (animation behavior)
+                              - group-hover:after:scale-x-100 (triggers expansion on hover)
+                            */}
+                            <h4 className="text-gray-100/80 text-xs sm:text-lg font-light uppercase tracking-[0.08em] drop-shadow-lg relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[2px] after:bottom-[-4px] after:left-0 after:bg-white/30 after:origin-bottom-left after:transition-transform after:duration-500 after:ease-out group-hover:after:scale-x-100">
+                              {itemName}
+                            </h4>
+                          </div>
+                        )}
+                      </div>
                     </motion.div>
-                  </motion.div>
-                ))}
+                  );
+                })}
               </div>
 
               <div className="mt-10 md:mt-16 flex justify-center md:justify-start">
@@ -334,7 +363,6 @@ export default function ProductsClient() {
         </div>
       </div>
 
-      {/* Final CTA */}
       <div className="bg-slate-950 py-20 md:py-40 px-6 text-center">
         <h3 className="text-slate-400 text-xs md:text-sm font-bold tracking-[0.4em] uppercase mb-6 md:mb-10">
           Experience Telaura
